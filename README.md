@@ -51,7 +51,7 @@ $ echo "A-B:B-C:B-D:E-D,F" | topsort -p :
 $ topsort pairs.txt
 
 Ordered input files including STDIN (file name is '-')
-$ echo "A-B:B-C:B-D:E-D:F" | topsort pairs1.txt pairs2.txt - pairs3.txt
+$ echo "A-B,B-C,B-D,E-D,F" | topsort pairs1.txt pairs2.txt - pairs3.txt
 
 Usage:
   topsort [flags] [file...]
