@@ -16,6 +16,7 @@ package topsort
 
 import (
 	"testing"
+	"io"
 )
 
 func testGraph(graph *Graph, t *testing.T) {
@@ -57,10 +58,13 @@ func TestGraph_ParseLinesDefaultSeparators(t *testing.T) {
 	graph := NewGraph()
 	lines := []string{"A>B,E", "B>C,C>D", ""}
 	var i int;
-	lineReader := func() string {
+	lineReader := func() (string, error) {
+		if i == len(lines) {
+			return "", io.EOF
+		}
 		line := lines[i]
 		i++
-		return line
+		return line, nil
 	}
 	graph.ParseLines("", "", lineReader)
 	testGraph(graph, t)
@@ -70,10 +74,13 @@ func TestGraph_ParseLinesCustomSeparators(t *testing.T) {
 	graph := NewGraph()
 	lines := []string{"A-B|E|C-D", "B-C", ""}
 	var i int;
-	lineReader := func() string {
+	lineReader := func() (string, error) {
+		if i == len(lines) {
+			return "", io.EOF
+		}
 		line := lines[i]
 		i++
-		return line
+		return line, nil
 	}
 	graph.ParseLines("-", "|", lineReader)
 	testGraph(graph, t)

@@ -14,7 +14,10 @@
 
 package topsort
 
-import "strings"
+import (
+	"strings"
+	"io"
+)
 
 const EDGE_SEP = ">"
 const PAIR_SEP = ","
@@ -40,7 +43,7 @@ func (g *Graph) ParseString(data, edgeSep, pairSep string) {
 }
 
 // ParseLines Parse nodes and egdes from lines
-func (g *Graph) ParseLines(edgeSep, pairSep string, lineReader func()string) {
+func (g *Graph) ParseLines(edgeSep, pairSep string, lineReader func() (string, error)) (err error) {
 	if edgeSep == "" {
 		edgeSep = EDGE_SEP
 	}
@@ -48,7 +51,18 @@ func (g *Graph) ParseLines(edgeSep, pairSep string, lineReader func()string) {
 		pairSep = PAIR_SEP
 	}
 	var pairs [][2]string
-	for line := lineReader(); line != ""; {
+	var line string
+	for {
+		line, err = lineReader()
+		if err != nil {
+			if err == io.EOF {
+				break
+			}
+			return err
+		}
+		if line == "" {
+			continue
+		}
 		for _, pair := range strings.Split(line, pairSep) {
 			pairt := strings.Split(pair, edgeSep)
 			g.AddNode(pairt...)
@@ -56,7 +70,7 @@ func (g *Graph) ParseLines(edgeSep, pairSep string, lineReader func()string) {
 				pairs = append(pairs, [2]string{pairt[0], pairt[1]})
 			}
 		}
-		line = lineReader()
 	}
 	g.AddEdgeTuple(pairs...)
+	return nil
 }

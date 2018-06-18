@@ -1,7 +1,8 @@
-topsort
-=======
+# go-topsort
 
 Topological Sorting for Golang
+
+It's **fork** of [stevenle/topsort](https://github.com/stevenle/topsort).
 
 Topological sorting algorithms are especially useful for dependency calculation, and so this particular implementation is mainly intended for this purpose. As a result, the direction of edges and the order of the results may seem reversed compared to other implementations of topological sorting.
 
@@ -16,7 +17,14 @@ The graph is represented as:
 
 ![Graph image](https://www.planttext.com/plantuml/img/SoWkIImgAStDuKh9J2zABCXGS5Uevb800aS5NJi59p3J2SHqHZ1Tm4nN2BDMWSiXDIy5Q0G0)
 
-The code for this example would look something like:
+## INSTALLATION
+
+```go get -u github.com/moisespsena/go-topsort/topsort```
+
+
+## How To
+
+The code for previous example would look something like:
 
 ```go
 import fmt
@@ -64,4 +72,4 @@ if err != nil {
 }
 fmt.Println(results) // => [E A B D C]
 ```
-See `examples_test.go` for more examples.
+See [Examples Test](examples_test.go) for more examples.
