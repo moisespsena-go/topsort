@@ -38,18 +38,17 @@ and so this particular implementation is mainly intended for this purpose.
 As a result, the direction of edges and the order of the results may seem reversed 
 compared to other implementations of topological sorting.
 
-Author: Moises P. Sena <moisespsena@gmail.com>
 Home Page: https://github.com/moisespsena/go-topsort
 
 EXAMPLES
 --------
 
-$ echo "A-B,E,C-D,B-C" | topsort
-$ echo "A-B:E:C-D:B-C" | topsort -p :
+$ echo "A-B,B-C,B-D,E-D,F" | topsort
+$ echo "A-B:B-C:B-D:E-D:F" | topsort -p :
 $ topsort pairs.txt
 
-Ordered input files including STDIN (file '-')
-$ echo "A-B,E,C-D,B-C" | topsort pairs1.txt pairs2.txt - pairs3.txt
+Ordered input files including STDIN (file name is '-')
+$ echo "A-B:B-C:B-D:E-D:F" | topsort pairs1.txt pairs2.txt - pairs3.txt
 `,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		pairSep, err := cmd.Flags().GetString("pair-sep")

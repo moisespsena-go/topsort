@@ -21,6 +21,49 @@ The graph is represented as:
 
 ```go get -u github.com/moisespsena/go-topsort/topsort```
 
+## CLI
+
+```
+$GOPATH/bin/topsort -h
+
+# or
+
+export PATH=$GOPATH/bin:$PATH
+topsort -h
+```
+
+Output:
+
+```
+Topological sorting algorithms are especially useful for dependency calculation, 
+and so this particular implementation is mainly intended for this purpose. 
+
+As a result, the direction of edges and the order of the results may seem reversed 
+compared to other implementations of topological sorting.
+
+Home Page: https://github.com/moisespsena/go-topsort
+
+EXAMPLES
+--------
+
+$ echo "A-B,B-C,B-D,E-D,F" | topsort
+$ echo "A-B:B-C:B-D:E-D,F" | topsort -p :
+$ topsort pairs.txt
+
+Ordered input files including STDIN (file name is '-')
+$ echo "A-B:B-C:B-D:E-D:F" | topsort pairs1.txt pairs2.txt - pairs3.txt
+
+Usage:
+  topsort [flags] [file...]
+
+Flags:
+  -e, --edge-sep string   Set the edge separator (default "-")
+  -h, --help              help for topsort
+  -p, --pair-sep string   Set the pairs separator (default ",")
+  -t, --toggle            Help message for toggle
+  -T, --top-sort          Use Topological node classifier, otherwise, Depth-first classifier.
+
+```
 
 ## How To
 
