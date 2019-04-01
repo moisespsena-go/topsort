@@ -23,7 +23,7 @@ import (
 	"path/filepath"
 	"github.com/spf13/cobra"
 	"github.com/moisespsena/go-topsort"
-	"github.com/moisespsena/go-error-wrap"
+	"github.com/moisespsena-go/error-wrap"
 )
 
 var cfgFile string
