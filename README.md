@@ -19,7 +19,7 @@ The graph is represented as:
 
 ## INSTALLATION
 
-```go get -u github.com/moisespsena/go-topsort/topsort```
+```go get -u github.com/moisespsena-go/topsort/topsort```
 
 ## CLI
 
@@ -41,7 +41,7 @@ and so this particular implementation is mainly intended for this purpose.
 As a result, the direction of edges and the order of the results may seem reversed 
 compared to other implementations of topological sorting.
 
-Home Page: https://github.com/moisespsena/go-topsort
+Home Page: https://github.com/moisespsena-go/topsort
 
 EXAMPLES
 --------

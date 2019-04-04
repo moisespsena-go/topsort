@@ -14,7 +14,7 @@
 
 package main
 
-import "github.com/moisespsena/go-topsort/topsort/cmd"
+import "github.com/moisespsena-go/topsort/topsort/cmd"
 
 func main() {
 	cmd.Execute()
